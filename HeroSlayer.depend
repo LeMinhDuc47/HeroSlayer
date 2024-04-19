@@ -1,0 +1,27 @@
+# depslib dependency file v1.0
+1713540726 source:c:\sdl\heroslayer\main.cpp
+	"Engine.h"
+	<bits/stdc++.h>
+
+1713540509 c:\sdl\heroslayer\src\core\engine.h
+	"SDL.h"
+
+1713540652 source:c:\sdl\heroslayer\src\core\engine.cpp
+	"Engine.h"
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+
+1713540726 source:c:\sdl\heroslayer\heroslayer\main.cpp
+	"Engine.h"
+	<bits/stdc++.h>
+
+1713540509 c:\sdl\heroslayer\heroslayer\src\core\engine.h
+	"SDL.h"
+
+1713540815 source:c:\sdl\heroslayer\heroslayer\src\core\engine.cpp
+	"Engine.h"
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+
