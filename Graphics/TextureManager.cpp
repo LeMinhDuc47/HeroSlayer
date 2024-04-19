@@ -6,7 +6,6 @@
 #include <SDL_image.h>
 using namespace std;
 TextureManager* TextureManager::s_Instance = nullptr;
-
 bool TextureManager::Load(string id, string filename)
 {
     SDL_Surface* surface = IMG_Load(filename.c_str());

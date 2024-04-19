@@ -3,6 +3,7 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include"TextureManager.h"
+#include<Vector2D.h>
 using namespace std;
 Engine* Engine::s_Instance = nullptr;
 
@@ -28,6 +29,8 @@ bool Engine::Init()
         return false;
     }
     TextureManager::GetInstance()->Load("i","assets/Idle.png");
+    Transform tf;
+    tf.Log();
    return m_IsRunning = true;
 }
 
