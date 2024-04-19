@@ -12,11 +12,11 @@
 	<SDL.h>
 	<SDL_image.h>
 
-1713540726 source:c:\sdl\heroslayer\heroslayer\main.cpp
+1713549148 source:c:\sdl\heroslayer\heroslayer\main.cpp
 	"Engine.h"
 	<bits/stdc++.h>
 
-1713540509 c:\sdl\heroslayer\heroslayer\src\core\engine.h
+1713549148 c:\sdl\heroslayer\heroslayer\src\core\engine.h
 	"SDL.h"
 
 1713540815 source:c:\sdl\heroslayer\heroslayer\src\core\engine.cpp
@@ -24,4 +24,17 @@
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
+
+1713549077 source:c:\sdl\heroslayer\heroslayer\graphics\texturemanager.cpp
+	"TextureManager.h"
+	"Engine.h"
+	<string>
+	<map>
+	<SDL.h>
+	<SDL_image.h>
+
+1713548623 c:\sdl\heroslayer\heroslayer\graphics\texturemanager.h
+	<string>
+	<SDL.h>
+	<map>
 

@@ -5,7 +5,7 @@
 
 #define SCREEN_WIDTH 960
 #define SCREEN_HEIGHT 640
-
+using namespace std;
 class Engine
 {
 public:
