@@ -14,8 +14,8 @@
 				<Compiler>
 					<Add option="-g" />
 					<Add directory="src/Core" />
-					<Add directory="Graphics" />
 					<Add directory="src/Physics" />
+					<Add directory="src/Graphics" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -37,11 +37,11 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="Graphics/TextureManager.cpp" />
-		<Unit filename="Graphics/TextureManager.h" />
 		<Unit filename="Main.cpp" />
 		<Unit filename="src/Core/Engine.cpp" />
 		<Unit filename="src/Core/Engine.h" />
+		<Unit filename="src/Graphics/TextureManager.cpp" />
+		<Unit filename="src/Graphics/TextureManager.h" />
 		<Unit filename="src/Physics/Vector2D.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />

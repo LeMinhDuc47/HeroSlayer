@@ -43,6 +43,19 @@
 1713556585 c:\sdl\heroslayer\heroslayer\src\physics\transform.h
 	"Vector2D.h"
 
-1713557340 c:\sdl\heroslayer\heroslayer\src\physics\vector2d.h
+1713558777 c:\sdl\heroslayer\heroslayer\src\physics\vector2d.h
 	<iostream>
+
+1713556508 source:c:\sdl\heroslayer\heroslayer\src\graphics\texturemanager.cpp
+	"TextureManager.h"
+	"Engine.h"
+	<string>
+	<map>
+	<SDL.h>
+	<SDL_image.h>
+
+1713548623 c:\sdl\heroslayer\heroslayer\src\graphics\texturemanager.h
+	<string>
+	<SDL.h>
+	<map>
 
