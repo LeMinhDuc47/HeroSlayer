@@ -7,6 +7,8 @@
 #include<Vector2D.h>
 #include<Warrior.h>
 #include"Timer.h"
+#include"MapParser.h"
+#include"GameMap.h"
 using namespace std;
 Engine* Engine::s_Instance = nullptr;
 Warrior* player=nullptr;
@@ -31,7 +33,11 @@ bool Engine::Init()
         SDL_Log("Failed to create Renderer: %s", SDL_GetError());
         return false;
     }
-    TextureManager::GetInstance()->Load("player","assets/attack.png");
+    if(MapParser::GetInstance()->Load()){
+        cout <<"Failed to load map"<<endl;
+    }
+    m_LevelMap=MapParser::GetInstance()->GetMap("MAP");
+    TextureManager::GetInstance()->Load("player","assets/attack .png");
      TextureManager::GetInstance()->Load("player_run","assets/Run.png");
     player= new Warrior(new Properties("player", 100, 200,97, 90 ));
     Transform tf;
@@ -41,6 +47,7 @@ bool Engine::Init()
 
 void Engine::Update() {
 float dt = Timer::GetInstance()->GetDeltaTime();
+m_LevelMap->Update();
 player->Update(dt);
 
 }
@@ -50,6 +57,7 @@ player->Update(dt);
 void Engine::Render() {
     SDL_SetRenderDrawColor(m_Renderer, 124, 218,254, 255);
     SDL_RenderClear(m_Renderer);
+    m_LevelMap->Render();
     player->Draw();
     SDL_RenderPresent(m_Renderer);
 }

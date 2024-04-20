@@ -17,10 +17,11 @@
 	<bits/stdc++.h>
 	"Timer.h"
 
-1713598155 c:\sdl\heroslayer\heroslayer\src\core\engine.h
+1713638901 c:\sdl\heroslayer\heroslayer\src\core\engine.h
 	"SDL.h"
+	"GameMap.h"
 
-1713615297 source:c:\sdl\heroslayer\heroslayer\src\core\engine.cpp
+1713638952 source:c:\sdl\heroslayer\heroslayer\src\core\engine.cpp
 	"Engine.h"
 	<iostream>
 	<SDL.h>
@@ -30,6 +31,8 @@
 	<Vector2D.h>
 	<Warrior.h>
 	"Timer.h"
+	"MapParser.h"
+	"GameMap.h"
 
 1713556508 source:c:\sdl\heroslayer\heroslayer\graphics\texturemanager.cpp
 	"TextureManager.h"
@@ -126,4 +129,74 @@
 	<SDL_image.h>
 
 1713615926 c:\sdl\heroslayer\heroslayer\src\operate\timer.h
+
+1713637390 c:\sdl\heroslayer\heroslayer\src\core\texturemanager.h
+	<bits/stdc++.h>
+	<SDL.h>
+
+1713637469 source:c:\sdl\heroslayer\heroslayer\src\core\texturemanager.cpp
+	"TextureManager.h"
+	"Engine.h"
+	<bits/stdc++.h>
+	<SDL.h>
+	<SDL_image.h>
+
+1713638399 source:c:\sdl\heroslayer\heroslayer\src\map\mapparser.cpp
+	"MapParser.h"
+	<SDL.h>
+	<SDL_image.h>
+
+1713635334 c:\sdl\heroslayer\heroslayer\src\map\mapparser.h
+	<bits/stdc++.h>
+	"GameMap.h"
+	"TileLayer.h"
+	"tinyxml.h"
+
+1713035418 source:c:\sdl\heroslayer\heroslayer\src\vendor\tinyxml\tinystr.cpp
+	"tinystr.h"
+
+1713035418 c:\sdl\heroslayer\heroslayer\src\vendor\tinyxml\tinystr.h
+	<assert.h>
+	<string.h>
+
+1713035418 source:c:\sdl\heroslayer\heroslayer\src\vendor\tinyxml\tinyxml.cpp
+	<ctype.h>
+	<sstream>
+	<iostream>
+	"tinyxml.h"
+
+1713035418 c:\sdl\heroslayer\heroslayer\src\vendor\tinyxml\tinyxml.h
+	<ctype.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<assert.h>
+	<string>
+	<iostream>
+	<sstream>
+	"tinystr.h"
+
+1713035418 source:c:\sdl\heroslayer\heroslayer\src\vendor\tinyxml\tinyxmlerror.cpp
+	"tinyxml.h"
+
+1713035418 source:c:\sdl\heroslayer\heroslayer\src\vendor\tinyxml\tinyxmlparser.cpp
+	<ctype.h>
+	<stddef.h>
+	"tinyxml.h"
+	<windows.h>
+
+1713618971 c:\sdl\heroslayer\heroslayer\src\map\gamemap.h
+	<bits/stdc++.h>
+	"Layer.h"
+
+1713618971 c:\sdl\heroslayer\heroslayer\src\map\layer.h
+
+1713625124 c:\sdl\heroslayer\heroslayer\src\map\tilelayer.h
+	<bits/stdc++.h>
+	"Layer.h"
+
+1713637556 source:c:\sdl\heroslayer\heroslayer\src\map\tilelayer.cpp
+	"TileLayer.h"
+	"TextureManager.h"
+	<SDL.h>
 

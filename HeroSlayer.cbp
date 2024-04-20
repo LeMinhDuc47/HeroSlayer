@@ -17,6 +17,8 @@
 					<Add directory="src/Physics" />
 					<Add directory="src/Graphics" />
 					<Add directory="src/Operate" />
+					<Add directory="src/Map" />
+					<Add directory="src/Vendor/TinyXML" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -32,6 +34,7 @@
 					<Add directory="Characters" />
 					<Add directory="src/Characters" />
 					<Add directory="src/Operate" />
+					<Add directory="src/Map" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -44,8 +47,14 @@
 		<Unit filename="Main.cpp" />
 		<Unit filename="src/Core/Engine.cpp" />
 		<Unit filename="src/Core/Engine.h" />
-		<Unit filename="src/Graphics/TextureManager.cpp" />
-		<Unit filename="src/Graphics/TextureManager.h" />
+		<Unit filename="src/Core/TextureManager.cpp" />
+		<Unit filename="src/Core/TextureManager.h" />
+		<Unit filename="src/Map/GameMap.h" />
+		<Unit filename="src/Map/Layer.h" />
+		<Unit filename="src/Map/MapParser.cpp" />
+		<Unit filename="src/Map/MapParser.h" />
+		<Unit filename="src/Map/TileLayer.cpp" />
+		<Unit filename="src/Map/TileLayer.h" />
 		<Unit filename="src/Operate/Animation.cpp" />
 		<Unit filename="src/Operate/Animation.h" />
 		<Unit filename="src/Operate/Input.cpp" />
@@ -55,6 +64,12 @@
 		<Unit filename="src/Operate/Warrior.cpp" />
 		<Unit filename="src/Operate/Warrior.h" />
 		<Unit filename="src/Physics/Vector2D.h" />
+		<Unit filename="src/Vendor/TinyXML/tinystr.cpp" />
+		<Unit filename="src/Vendor/TinyXML/tinystr.h" />
+		<Unit filename="src/Vendor/TinyXML/tinyxml.cpp" />
+		<Unit filename="src/Vendor/TinyXML/tinyxml.h" />
+		<Unit filename="src/Vendor/TinyXML/tinyxmlerror.cpp" />
+		<Unit filename="src/Vendor/TinyXML/tinyxmlparser.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

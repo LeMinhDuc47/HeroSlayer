@@ -2,7 +2,7 @@
 #define ENGINE_H
 
 #include "SDL.h"
-
+#include"GameMap.h"
 #define SCREEN_WIDTH 960
 #define SCREEN_HEIGHT 640
 using namespace std;
@@ -28,7 +28,7 @@ public:
 private:
     Engine(){}
     bool m_IsRunning;
-
+    GameMap *m_LevelMap;
     SDL_Window *m_Window;
     SDL_Renderer *m_Renderer;
 

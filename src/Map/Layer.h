@@ -1,16 +1,10 @@
 #ifndef LAYER_H
 #define LAYER_H
-
-
 class Layer
 {
     public:
-        Layer() {}
-        virtual ~Layer() {}
-
-    protected:
-
-    private:
+        virtual void Render() = 0;
+        virtual void Update() = 0;
 };
 
-#endif // LAYER_H
+#endif
