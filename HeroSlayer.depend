@@ -12,14 +12,15 @@
 	<SDL.h>
 	<SDL_image.h>
 
-1713549148 source:c:\sdl\heroslayer\heroslayer\main.cpp
+1713615171 source:c:\sdl\heroslayer\heroslayer\main.cpp
 	"Engine.h"
 	<bits/stdc++.h>
+	"Timer.h"
 
 1713598155 c:\sdl\heroslayer\heroslayer\src\core\engine.h
 	"SDL.h"
 
-1713605940 source:c:\sdl\heroslayer\heroslayer\src\core\engine.cpp
+1713615297 source:c:\sdl\heroslayer\heroslayer\src\core\engine.cpp
 	"Engine.h"
 	<iostream>
 	<SDL.h>
@@ -28,6 +29,7 @@
 	"Input.h"
 	<Vector2D.h>
 	<Warrior.h>
+	"Timer.h"
 
 1713556508 source:c:\sdl\heroslayer\heroslayer\graphics\texturemanager.cpp
 	"TextureManager.h"
@@ -101,7 +103,7 @@
 	"TextureManager.h"
 	<bits/stdc++.h>
 
-1713605860 source:c:\sdl\heroslayer\heroslayer\src\operate\warrior.cpp
+1713615691 source:c:\sdl\heroslayer\heroslayer\src\operate\warrior.cpp
 	"Warrior.h"
 	"TextureManager.h"
 	<SDL.h>
@@ -117,4 +119,11 @@
 1713604385 c:\sdl\heroslayer\heroslayer\src\operate\input.h
 	<SDL.h>
 	<SDL_image.h>
+
+1713615917 source:c:\sdl\heroslayer\heroslayer\src\operate\timer.cpp
+	"Timer.h"
+	<SDL.h>
+	<SDL_image.h>
+
+1713615926 c:\sdl\heroslayer\heroslayer\src\operate\timer.h
 

@@ -50,6 +50,8 @@
 		<Unit filename="src/Operate/Animation.h" />
 		<Unit filename="src/Operate/Input.cpp" />
 		<Unit filename="src/Operate/Input.h" />
+		<Unit filename="src/Operate/Timer.cpp" />
+		<Unit filename="src/Operate/Timer.h" />
 		<Unit filename="src/Operate/Warrior.cpp" />
 		<Unit filename="src/Operate/Warrior.h" />
 		<Unit filename="src/Physics/Vector2D.h" />

@@ -6,6 +6,7 @@
 #include"Input.h"
 #include<Vector2D.h>
 #include<Warrior.h>
+#include"Timer.h"
 using namespace std;
 Engine* Engine::s_Instance = nullptr;
 Warrior* player=nullptr;
@@ -30,7 +31,7 @@ bool Engine::Init()
         SDL_Log("Failed to create Renderer: %s", SDL_GetError());
         return false;
     }
-    TextureManager::GetInstance()->Load("player","assets/Idle.png");
+    TextureManager::GetInstance()->Load("player","assets/attack.png");
      TextureManager::GetInstance()->Load("player_run","assets/Run.png");
     player= new Warrior(new Properties("player", 100, 200,97, 90 ));
     Transform tf;
@@ -39,8 +40,8 @@ bool Engine::Init()
 }
 
 void Engine::Update() {
-
-player->Update(0);
+float dt = Timer::GetInstance()->GetDeltaTime();
+player->Update(dt);
 
 }
 
