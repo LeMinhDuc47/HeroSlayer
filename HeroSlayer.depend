@@ -19,13 +19,14 @@
 1713549148 c:\sdl\heroslayer\heroslayer\src\core\engine.h
 	"SDL.h"
 
-1713557275 source:c:\sdl\heroslayer\heroslayer\src\core\engine.cpp
+1713587960 source:c:\sdl\heroslayer\heroslayer\src\core\engine.cpp
 	"Engine.h"
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
 	"TextureManager.h"
 	<Vector2D.h>
+	<Warrior.h>
 
 1713556508 source:c:\sdl\heroslayer\heroslayer\graphics\texturemanager.cpp
 	"TextureManager.h"
@@ -43,10 +44,11 @@
 1713556585 c:\sdl\heroslayer\heroslayer\src\physics\transform.h
 	"Vector2D.h"
 
-1713558777 c:\sdl\heroslayer\heroslayer\src\physics\vector2d.h
-	<iostream>
+1713586149 c:\sdl\heroslayer\heroslayer\src\physics\vector2d.h
+	<SDL.h>
+	<bits/stdc++.h>
 
-1713556508 source:c:\sdl\heroslayer\heroslayer\src\graphics\texturemanager.cpp
+1713586123 source:c:\sdl\heroslayer\heroslayer\src\graphics\texturemanager.cpp
 	"TextureManager.h"
 	"Engine.h"
 	<string>
@@ -54,8 +56,20 @@
 	<SDL.h>
 	<SDL_image.h>
 
-1713548623 c:\sdl\heroslayer\heroslayer\src\graphics\texturemanager.h
+1713586123 c:\sdl\heroslayer\heroslayer\src\graphics\texturemanager.h
 	<string>
 	<SDL.h>
 	<map>
+
+1713587351 c:\sdl\heroslayer\heroslayer\characters\warrior.h
+	"Vector2D.h"
+
+1713587777 source:c:\sdl\heroslayer\heroslayer\characters\warrior.cpp
+	"Warrior.h"
+	"TextureManager.h"
+	<SDL.h>
+	<SDL_image.h>
+
+1713587351 c:\sdl\heroslayer\heroslayer\src\characters\warrior.h
+	"Vector2D.h"
 

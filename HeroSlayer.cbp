@@ -16,6 +16,7 @@
 					<Add directory="src/Core" />
 					<Add directory="src/Physics" />
 					<Add directory="src/Graphics" />
+					<Add directory="Characters" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -28,6 +29,7 @@
 					<Add directory="src/Core" />
 					<Add directory="Graphics" />
 					<Add directory="src/Physics" />
+					<Add directory="Characters" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -37,6 +39,8 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="Characters/Warrior.cpp" />
+		<Unit filename="Characters/Warrior.h" />
 		<Unit filename="Main.cpp" />
 		<Unit filename="src/Core/Engine.cpp" />
 		<Unit filename="src/Core/Engine.h" />

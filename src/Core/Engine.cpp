@@ -4,9 +4,10 @@
 #include <SDL_image.h>
 #include"TextureManager.h"
 #include<Vector2D.h>
+#include<Warrior.h>
 using namespace std;
 Engine* Engine::s_Instance = nullptr;
-
+Warrior* player=nullptr;
 bool Engine::Init()
 {
     if (SDL_Init(SDL_INIT_VIDEO) != 0 && IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG) != 0)
@@ -28,19 +29,23 @@ bool Engine::Init()
         SDL_Log("Failed to create Renderer: %s", SDL_GetError());
         return false;
     }
-    TextureManager::GetInstance()->Load("i","assets/Idle.png");
+    TextureManager::GetInstance()->Load("player","assets/Idle.png");
+    player= new Warrior(new Properties("player", 100, 200,97, 120 ));
     Transform tf;
     tf.Log();
    return m_IsRunning = true;
 }
 
 void Engine::Update() {
+    player->Update(0);
 }
+
+
 
 void Engine::Render() {
     SDL_SetRenderDrawColor(m_Renderer, 124, 218,254, 255);
     SDL_RenderClear(m_Renderer);
-    TextureManager::GetInstance()->Draw("i", 100, 100,768, 96);
+    player->Draw();
     SDL_RenderPresent(m_Renderer);
 }
 
