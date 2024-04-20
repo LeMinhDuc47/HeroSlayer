@@ -1,7 +1,6 @@
 #include "TextureManager.h"
 #include "Engine.h"
-#include <string>
-#include <map>
+#include<bits/stdc++.h>
 #include <SDL.h>
 #include <SDL_image.h>
 using namespace std;

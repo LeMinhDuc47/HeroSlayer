@@ -1,9 +1,8 @@
 #ifndef TEXTUREMANAGER_H
 #define TEXTUREMANAGER_H
 
-#include <string>
+#include<bits/stdc++.h>
 #include <SDL.h>
-#include <map>
 using namespace std;
 class TextureManager
 {

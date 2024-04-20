@@ -16,7 +16,7 @@
 					<Add directory="src/Core" />
 					<Add directory="src/Physics" />
 					<Add directory="src/Graphics" />
-					<Add directory="src/Characters" />
+					<Add directory="src/Operate" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -31,6 +31,7 @@
 					<Add directory="src/Physics" />
 					<Add directory="Characters" />
 					<Add directory="src/Characters" />
+					<Add directory="src/Operate" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -41,14 +42,16 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="Main.cpp" />
-		<Unit filename="src/Characters/Animation.cpp" />
-		<Unit filename="src/Characters/Animation.h" />
-		<Unit filename="src/Characters/Warrior.cpp" />
-		<Unit filename="src/Characters/Warrior.h" />
 		<Unit filename="src/Core/Engine.cpp" />
 		<Unit filename="src/Core/Engine.h" />
 		<Unit filename="src/Graphics/TextureManager.cpp" />
 		<Unit filename="src/Graphics/TextureManager.h" />
+		<Unit filename="src/Operate/Animation.cpp" />
+		<Unit filename="src/Operate/Animation.h" />
+		<Unit filename="src/Operate/Input.cpp" />
+		<Unit filename="src/Operate/Input.h" />
+		<Unit filename="src/Operate/Warrior.cpp" />
+		<Unit filename="src/Operate/Warrior.h" />
 		<Unit filename="src/Physics/Vector2D.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />

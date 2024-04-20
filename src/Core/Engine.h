@@ -22,8 +22,8 @@ public:
     void Render();
     void Events();
 
-    inline bool IsRunning() {return m_IsRunning;}
-    inline SDL_Renderer* GetRenderer() {return m_Renderer;}
+     bool IsRunning() {return m_IsRunning;}
+     SDL_Renderer* GetRenderer() {return m_Renderer;}
 
 private:
     Engine(){}

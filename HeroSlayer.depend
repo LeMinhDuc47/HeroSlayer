@@ -16,15 +16,16 @@
 	"Engine.h"
 	<bits/stdc++.h>
 
-1713549148 c:\sdl\heroslayer\heroslayer\src\core\engine.h
+1713598155 c:\sdl\heroslayer\heroslayer\src\core\engine.h
 	"SDL.h"
 
-1713587960 source:c:\sdl\heroslayer\heroslayer\src\core\engine.cpp
+1713605940 source:c:\sdl\heroslayer\heroslayer\src\core\engine.cpp
 	"Engine.h"
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
 	"TextureManager.h"
+	"Input.h"
 	<Vector2D.h>
 	<Warrior.h>
 
@@ -44,22 +45,20 @@
 1713556585 c:\sdl\heroslayer\heroslayer\src\physics\transform.h
 	"Vector2D.h"
 
-1713597105 c:\sdl\heroslayer\heroslayer\src\physics\vector2d.h
+1713605748 c:\sdl\heroslayer\heroslayer\src\physics\vector2d.h
 	<SDL.h>
 	<bits/stdc++.h>
 
-1713586123 source:c:\sdl\heroslayer\heroslayer\src\graphics\texturemanager.cpp
+1713598449 source:c:\sdl\heroslayer\heroslayer\src\graphics\texturemanager.cpp
 	"TextureManager.h"
 	"Engine.h"
-	<string>
-	<map>
+	<bits/stdc++.h>
 	<SDL.h>
 	<SDL_image.h>
 
-1713586123 c:\sdl\heroslayer\heroslayer\src\graphics\texturemanager.h
-	<string>
+1713598287 c:\sdl\heroslayer\heroslayer\src\graphics\texturemanager.h
+	<bits/stdc++.h>
 	<SDL.h>
-	<map>
 
 1713587351 c:\sdl\heroslayer\heroslayer\characters\warrior.h
 	"Vector2D.h"
@@ -74,7 +73,7 @@
 	"Vector2D.h"
 	"Animation.h"
 
-1713588014 source:c:\sdl\heroslayer\heroslayer\src\characters\warrior.cpp
+1713597572 source:c:\sdl\heroslayer\heroslayer\src\characters\warrior.cpp
 	"Warrior.h"
 	"TextureManager.h"
 	<SDL.h>
@@ -88,4 +87,34 @@
 1713593548 c:\sdl\heroslayer\heroslayer\src\characters\animation.h
 	<bits/stdc++.h>
 	<SDL.h>
+
+1713597209 c:\sdl\heroslayer\heroslayer\src\operate\warrior.h
+	"Vector2D.h"
+	"Animation.h"
+
+1713593548 c:\sdl\heroslayer\heroslayer\src\operate\animation.h
+	<bits/stdc++.h>
+	<SDL.h>
+
+1713593864 source:c:\sdl\heroslayer\heroslayer\src\operate\animation.cpp
+	"Animation.h"
+	"TextureManager.h"
+	<bits/stdc++.h>
+
+1713605860 source:c:\sdl\heroslayer\heroslayer\src\operate\warrior.cpp
+	"Warrior.h"
+	"TextureManager.h"
+	<SDL.h>
+	<SDL_image.h>
+	"Input.h"
+
+1713604567 source:c:\sdl\heroslayer\heroslayer\src\operate\input.cpp
+	"Input.h"
+	"Engine.h"
+	<SDL.h>
+	<SDL_image.h>
+
+1713604385 c:\sdl\heroslayer\heroslayer\src\operate\input.h
+	<SDL.h>
+	<SDL_image.h>
 

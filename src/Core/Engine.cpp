@@ -3,6 +3,7 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include"TextureManager.h"
+#include"Input.h"
 #include<Vector2D.h>
 #include<Warrior.h>
 using namespace std;
@@ -30,14 +31,17 @@ bool Engine::Init()
         return false;
     }
     TextureManager::GetInstance()->Load("player","assets/Idle.png");
-    player= new Warrior(new Properties("player", 100, 200,97, 120 ));
+     TextureManager::GetInstance()->Load("player_run","assets/Run.png");
+    player= new Warrior(new Properties("player", 100, 200,97, 90 ));
     Transform tf;
     tf.Log();
    return m_IsRunning = true;
 }
 
 void Engine::Update() {
-    player->Update(0);
+
+player->Update(0);
+
 }
 
 
@@ -50,13 +54,8 @@ void Engine::Render() {
 }
 
 void Engine::Events() {
-    SDL_Event event;
-    SDL_PollEvent(&event);
-    switch(event.type) {
-        case SDL_QUIT:
-            Quit();
-            break;
-    }
+
+    Input::GetInstance()->Listen();
 }
 
 bool Engine::Clean() {
