@@ -6,23 +6,25 @@ using namespace std;
 
 Warrior::Warrior(Properties* props): Character(props)
 {
-  m_Row=1;
-  m_FrameCount=8;
-  m_AnimSpeed=100;
+    m_RigidBody= new RigidBody();
+    m_Animation=new Animation();
+  m_Animation->SetProps(m_TextureID, 1, 8, 80, SDL_FLIP_HORIZONTAL);
 }
 
 void Warrior::Draw()
 {
-   TextureManager::GetInstance()->DrawFrame(m_TextureID, m_Transform->X, m_Transform->Y, m_Width, m_Height, m_Row, m_Frame);
+   m_Animation->Draw(m_Transform->X, m_Transform->Y, m_Width, m_Height);
 }
 
 void Warrior::Update(float dt)
 {
+    m_RigidBody->Update(0.2);
+    m_RigidBody->ApplyForce(2);
+    m_Transform->TranslateX(m_RigidBody->Position().X);
+     m_Transform->TranslateY(m_RigidBody->Position().Y);
+  m_Animation->Update();
 
-    m_Frame=(SDL_GetTicks()/m_AnimSpeed)%m_FrameCount;
 }
-
-
 
 void Warrior::Clean()
 {

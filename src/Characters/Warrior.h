@@ -1,6 +1,7 @@
 #ifndef WARRIOR_H
 #define WARRIOR_H
 #include "Vector2D.h"
+#include "Animation.h"
 using namespace std;
 class Warrior : public Character
 {
@@ -12,7 +13,8 @@ class Warrior : public Character
         virtual void Update(float dt);
 
     private:
-        int m_Row, m_Frame, m_FrameCount, m_AnimSpeed;
+        RigidBody *m_RigidBody;
+        Animation *m_Animation;
 };
 
 #endif

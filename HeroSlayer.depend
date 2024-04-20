@@ -44,7 +44,7 @@
 1713556585 c:\sdl\heroslayer\heroslayer\src\physics\transform.h
 	"Vector2D.h"
 
-1713586149 c:\sdl\heroslayer\heroslayer\src\physics\vector2d.h
+1713597105 c:\sdl\heroslayer\heroslayer\src\physics\vector2d.h
 	<SDL.h>
 	<bits/stdc++.h>
 
@@ -70,6 +70,22 @@
 	<SDL.h>
 	<SDL_image.h>
 
-1713587351 c:\sdl\heroslayer\heroslayer\src\characters\warrior.h
+1713597209 c:\sdl\heroslayer\heroslayer\src\characters\warrior.h
 	"Vector2D.h"
+	"Animation.h"
+
+1713588014 source:c:\sdl\heroslayer\heroslayer\src\characters\warrior.cpp
+	"Warrior.h"
+	"TextureManager.h"
+	<SDL.h>
+	<SDL_image.h>
+
+1713593864 source:c:\sdl\heroslayer\heroslayer\src\characters\animation.cpp
+	"Animation.h"
+	"TextureManager.h"
+	<bits/stdc++.h>
+
+1713593548 c:\sdl\heroslayer\heroslayer\src\characters\animation.h
+	<bits/stdc++.h>
+	<SDL.h>
 
