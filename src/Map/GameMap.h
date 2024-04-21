@@ -1,10 +1,8 @@
 #ifndef GAMEMAP_H
 #define GAMEMAP_H
-
 #include<bits/stdc++.h>
 #include "Layer.h"
 using namespace std;
-
 class GameMap
 {
     public:

@@ -1,5 +1,5 @@
 #include "MapParser.h"
-
+#include<bits/stdc++.h>
 #include <SDL.h>
 #include <SDL_image.h>
 using namespace std;
@@ -7,17 +7,17 @@ MapParser* MapParser::s_Instance = nullptr;
 
 bool MapParser::Load()
 {
-    return Parse("MAP", "assets\\maps\\map1.tmx");
+    return Parse("MAP", "assets\\maps\\map2.tmx");
 }
 
-bool MapParser::Parse(string id,string source)
+bool MapParser::Parse(string id, string source)
 {
     TiXmlDocument xml;
     xml.LoadFile(source);
 
     if(xml.Error())
     {
-        cerr << "Failed to load: " << source << endl;
+        cerr << "Failed to load: " << source <<endl;
         return false;
     }
 
@@ -42,7 +42,6 @@ bool MapParser::Parse(string id,string source)
     }
 
     SDL_Log("tilesets = %d", (int)tilesets.size());
-
     GameMap* gamemap = new GameMap();
     for(TiXmlElement* e = root->FirstChildElement(); e != nullptr; e = e->NextSiblingElement())
     {
@@ -92,7 +91,6 @@ TileLayer* MapParser::ParseTileLayer(TiXmlElement *xmlLayer, TilesetList tileset
             break;
         }
     }
-
 
     string matrix(data->GetText());
     istringstream iss(matrix);
