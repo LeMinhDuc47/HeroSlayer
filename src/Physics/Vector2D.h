@@ -2,7 +2,7 @@
 #define VECTOR2D_H
 #include<SDL.h>
 #include <bits/stdc++.h>
-
+#include"Point.h"
 #define UNI_MASS 1.0f
 #define GRAVITY 9.8f
 
@@ -89,12 +89,18 @@ class GameObject : public IObject
 {
     public:
         GameObject(Properties* props)
-: m_TextureID(props->TextureID), m_Width(props->Width), m_Height(props->Height), m_Flip(props->Flip){  m_Transform = new Transform(props->X, props->Y);}
+: m_TextureID(props->TextureID), m_Width(props->Width), m_Height(props->Height), m_Flip(props->Flip){  m_Transform = new Transform(props->X, props->Y);
+        float px=props->X+ props->Width/2;
+        float py=props->Y+ props->Height/2;
+        m_Origin= new Point(px,py);
+}
+        Point* GetOrigin(){return m_Origin;}
         virtual void Draw() = 0;
         virtual void Clean() = 0;
         virtual void Update(float dt) = 0;
 
     protected:
+        Point* m_Origin;
         Transform* m_Transform;
         string m_TextureID;
         int m_Width, m_Height;

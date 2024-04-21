@@ -9,6 +9,7 @@
 #include"Timer.h"
 #include"MapParser.h"
 #include"GameMap.h"
+#include"Camera.h"
 using namespace std;
 Engine* Engine::s_Instance = nullptr;
 Warrior* player=nullptr;
@@ -39,9 +40,11 @@ bool Engine::Init()
     m_LevelMap=MapParser::GetInstance()->GetMap("MAP");
     TextureManager::GetInstance()->Load("player","assets/attack .png");
      TextureManager::GetInstance()->Load("player_run","assets/Run.png");
+      TextureManager::GetInstance()->Load("bg","assets/bg.png");
     player= new Warrior(new Properties("player", 100, 200,97, 90 ));
     Transform tf;
     tf.Log();
+    Camera::GetInstance()->SetTarget(player->GetOrigin());
    return m_IsRunning = true;
 }
 
@@ -49,7 +52,7 @@ void Engine::Update() {
 float dt = Timer::GetInstance()->GetDeltaTime();
 m_LevelMap->Update();
 player->Update(dt);
-
+Camera::GetInstance()->Update(dt);
 }
 
 
@@ -57,6 +60,7 @@ player->Update(dt);
 void Engine::Render() {
     SDL_SetRenderDrawColor(m_Renderer, 124, 218,254, 255);
     SDL_RenderClear(m_Renderer);
+    TextureManager::GetInstance()->Draw("bg", 0,0 ,2100, 1050);
     m_LevelMap->Render();
     player->Draw();
     SDL_RenderPresent(m_Renderer);

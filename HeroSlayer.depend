@@ -21,7 +21,7 @@
 	"SDL.h"
 	"GameMap.h"
 
-1713638952 source:c:\sdl\heroslayer\heroslayer\src\core\engine.cpp
+1713669301 source:c:\sdl\heroslayer\heroslayer\src\core\engine.cpp
 	"Engine.h"
 	<iostream>
 	<SDL.h>
@@ -33,6 +33,7 @@
 	"Timer.h"
 	"MapParser.h"
 	"GameMap.h"
+	"Camera.h"
 
 1713556508 source:c:\sdl\heroslayer\heroslayer\graphics\texturemanager.cpp
 	"TextureManager.h"
@@ -50,9 +51,10 @@
 1713556585 c:\sdl\heroslayer\heroslayer\src\physics\transform.h
 	"Vector2D.h"
 
-1713605748 c:\sdl\heroslayer\heroslayer\src\physics\vector2d.h
+1713669504 c:\sdl\heroslayer\heroslayer\src\physics\vector2d.h
 	<SDL.h>
 	<bits/stdc++.h>
+	"Point.h"
 
 1713598449 source:c:\sdl\heroslayer\heroslayer\src\graphics\texturemanager.cpp
 	"TextureManager.h"
@@ -106,7 +108,7 @@
 	"TextureManager.h"
 	<bits/stdc++.h>
 
-1713615691 source:c:\sdl\heroslayer\heroslayer\src\operate\warrior.cpp
+1713668460 source:c:\sdl\heroslayer\heroslayer\src\operate\warrior.cpp
 	"Warrior.h"
 	"TextureManager.h"
 	<SDL.h>
@@ -134,14 +136,15 @@
 	<bits/stdc++.h>
 	<SDL.h>
 
-1713637469 source:c:\sdl\heroslayer\heroslayer\src\core\texturemanager.cpp
+1713669301 source:c:\sdl\heroslayer\heroslayer\src\core\texturemanager.cpp
 	"TextureManager.h"
 	"Engine.h"
 	<bits/stdc++.h>
 	<SDL.h>
 	<SDL_image.h>
+	"Camera.h"
 
-1713638399 source:c:\sdl\heroslayer\heroslayer\src\map\mapparser.cpp
+1713666053 source:c:\sdl\heroslayer\heroslayer\src\map\mapparser.cpp
 	"MapParser.h"
 	<SDL.h>
 	<SDL_image.h>
@@ -199,4 +202,16 @@
 	"TileLayer.h"
 	"TextureManager.h"
 	<SDL.h>
+
+1713669509 c:\sdl\heroslayer\heroslayer\src\physics\point.h
+	<iostream>
+
+1713668460 c:\sdl\heroslayer\heroslayer\src\operate\camera.h
+	<SDL.h>
+	"Engine.h"
+	"Vector2D.h"
+
+1713668460 source:c:\sdl\heroslayer\heroslayer\src\operate\camera.cpp
+	"Camera.h"
+	"Engine.h"
 
