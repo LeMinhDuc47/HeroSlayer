@@ -57,12 +57,17 @@
 		<Unit filename="src/Map/TileLayer.h" />
 		<Unit filename="src/Operate/Animation.cpp" />
 		<Unit filename="src/Operate/Animation.h" />
+		<Unit filename="src/Operate/Camera.cpp" />
+		<Unit filename="src/Operate/Camera.h" />
+		<Unit filename="src/Operate/CollisionHandler.cpp" />
+		<Unit filename="src/Operate/CollisionHandler.h" />
 		<Unit filename="src/Operate/Input.cpp" />
 		<Unit filename="src/Operate/Input.h" />
 		<Unit filename="src/Operate/Timer.cpp" />
 		<Unit filename="src/Operate/Timer.h" />
 		<Unit filename="src/Operate/Warrior.cpp" />
 		<Unit filename="src/Operate/Warrior.h" />
+		<Unit filename="src/Physics/Point.h" />
 		<Unit filename="src/Physics/Vector2D.h" />
 		<Unit filename="src/Vendor/TinyXML/tinystr.cpp" />
 		<Unit filename="src/Vendor/TinyXML/tinystr.h" />
