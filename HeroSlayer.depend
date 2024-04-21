@@ -12,28 +12,30 @@
 	<SDL.h>
 	<SDL_image.h>
 
-1713615171 source:c:\sdl\heroslayer\heroslayer\main.cpp
+1713725474 source:c:\sdl\heroslayer\heroslayer\main.cpp
 	"Engine.h"
-	<bits/stdc++.h>
 	"Timer.h"
 
-1713638901 c:\sdl\heroslayer\heroslayer\src\core\engine.h
-	"SDL.h"
+1713683381 c:\sdl\heroslayer\heroslayer\src\core\engine.h
 	"GameMap.h"
-
-1713669301 source:c:\sdl\heroslayer\heroslayer\src\core\engine.cpp
-	"Engine.h"
-	<iostream>
+	"GameObject.h"
+	<bits/stdc++.h>
 	<SDL.h>
 	<SDL_image.h>
-	"TextureManager.h"
+
+1713683971 source:c:\sdl\heroslayer\heroslayer\src\core\engine.cpp
+	"Engine.h"
 	"Input.h"
-	<Vector2D.h>
-	<Warrior.h>
+	"TextureManager.h"
 	"Timer.h"
+	"Warrior.h"
 	"MapParser.h"
-	"GameMap.h"
 	"Camera.h"
+	"Enemy.h"
+	"ObjectFactory.h"
+	<bits/stdc++.h>
+	<SDL.h>
+	<SDL_image.h>
 
 1713556508 source:c:\sdl\heroslayer\heroslayer\graphics\texturemanager.cpp
 	"TextureManager.h"
@@ -48,17 +50,12 @@
 	<SDL.h>
 	<map>
 
-1713556585 c:\sdl\heroslayer\heroslayer\src\physics\transform.h
+1713689728 c:\sdl\heroslayer\heroslayer\src\physics\transform.h
+	<bits/stdc++.h>
 	"Vector2D.h"
 
-1713677015 c:\sdl\heroslayer\heroslayer\src\physics\vector2d.h
-	<SDL.h>
+1713689728 c:\sdl\heroslayer\heroslayer\src\physics\vector2d.h
 	<bits/stdc++.h>
-	"Point.h"
-	"Engine.h"
-	"CollisionHandler.h"
-	"Camera.h"
-	"Vector2D.h"
 
 1713598449 source:c:\sdl\heroslayer\heroslayer\src\graphics\texturemanager.cpp
 	"TextureManager.h"
@@ -99,33 +96,45 @@
 	<bits/stdc++.h>
 	<SDL.h>
 
-1713597209 c:\sdl\heroslayer\heroslayer\src\operate\warrior.h
+1713708652 c:\sdl\heroslayer\heroslayer\src\operate\warrior.h
+	"Character.h"
+	"SpriteAnimation.h"
+	"RigidBody.h"
+	"Collider.h"
 	"Vector2D.h"
-	"Animation.h"
 
-1713593548 c:\sdl\heroslayer\heroslayer\src\operate\animation.h
+1713718531 c:\sdl\heroslayer\heroslayer\src\operate\animation.h
 	<bits/stdc++.h>
 	<SDL.h>
+	<SDL_image.h>
 
 1713593864 source:c:\sdl\heroslayer\heroslayer\src\operate\animation.cpp
 	"Animation.h"
 	"TextureManager.h"
 	<bits/stdc++.h>
 
-1713668460 source:c:\sdl\heroslayer\heroslayer\src\operate\warrior.cpp
+1713689086 source:c:\sdl\heroslayer\heroslayer\src\operate\warrior.cpp
 	"Warrior.h"
 	"TextureManager.h"
+	"SpriteAnimation.h"
+	"RigidBody.h"
+	"Input.h"
+	"CollisionHandler.h"
+	"Collider.h"
+	"Camera.h"
+	"ObjectFactory.h"
 	<SDL.h>
 	<SDL_image.h>
-	"Input.h"
+	<iostream>
+	<windows.h>
 
-1713604567 source:c:\sdl\heroslayer\heroslayer\src\operate\input.cpp
+1713689086 source:c:\sdl\heroslayer\heroslayer\src\operate\input.cpp
 	"Input.h"
 	"Engine.h"
 	<SDL.h>
 	<SDL_image.h>
 
-1713604385 c:\sdl\heroslayer\heroslayer\src\operate\input.h
+1713689086 c:\sdl\heroslayer\heroslayer\src\operate\input.h
 	<SDL.h>
 	<SDL_image.h>
 
@@ -136,24 +145,26 @@
 
 1713615926 c:\sdl\heroslayer\heroslayer\src\operate\timer.h
 
-1713637390 c:\sdl\heroslayer\heroslayer\src\core\texturemanager.h
+1713683381 c:\sdl\heroslayer\heroslayer\src\core\texturemanager.h
 	<bits/stdc++.h>
 	<SDL.h>
 
-1713669301 source:c:\sdl\heroslayer\heroslayer\src\core\texturemanager.cpp
+1713683381 source:c:\sdl\heroslayer\heroslayer\src\core\texturemanager.cpp
 	"TextureManager.h"
 	"Engine.h"
+	"Camera.h"
+	<bits/stdc++.h>
+	"tinyxml.h"
+	<SDL.h>
+	<SDL_image.h>
+
+1713683714 source:c:\sdl\heroslayer\heroslayer\src\map\mapparser.cpp
+	"MapParser.h"
 	<bits/stdc++.h>
 	<SDL.h>
 	<SDL_image.h>
-	"Camera.h"
 
-1713666053 source:c:\sdl\heroslayer\heroslayer\src\map\mapparser.cpp
-	"MapParser.h"
-	<SDL.h>
-	<SDL_image.h>
-
-1713635334 c:\sdl\heroslayer\heroslayer\src\map\mapparser.h
+1713683999 c:\sdl\heroslayer\heroslayer\src\map\mapparser.h
 	<bits/stdc++.h>
 	"GameMap.h"
 	"TileLayer.h"
@@ -192,35 +203,144 @@
 	"tinyxml.h"
 	<windows.h>
 
-1713618971 c:\sdl\heroslayer\heroslayer\src\map\gamemap.h
+1713683714 c:\sdl\heroslayer\heroslayer\src\map\gamemap.h
 	<bits/stdc++.h>
 	"Layer.h"
 
 1713618971 c:\sdl\heroslayer\heroslayer\src\map\layer.h
 
-1713625124 c:\sdl\heroslayer\heroslayer\src\map\tilelayer.h
+1713718857 c:\sdl\heroslayer\heroslayer\src\map\tilelayer.h
 	<bits/stdc++.h>
 	"Layer.h"
 
-1713637556 source:c:\sdl\heroslayer\heroslayer\src\map\tilelayer.cpp
+1713683714 source:c:\sdl\heroslayer\heroslayer\src\map\tilelayer.cpp
 	"TileLayer.h"
 	"TextureManager.h"
+	<bits/stdc++.h>
 	<SDL.h>
 
 1713669509 c:\sdl\heroslayer\heroslayer\src\physics\point.h
 	<iostream>
 
-1713677033 c:\sdl\heroslayer\heroslayer\src\operate\camera.h
+1713689086 c:\sdl\heroslayer\heroslayer\src\operate\camera.h
 	<SDL.h>
 	"Engine.h"
+	"Point.h"
 	"Vector2D.h"
 
-1713668460 source:c:\sdl\heroslayer\heroslayer\src\operate\camera.cpp
+1713689086 source:c:\sdl\heroslayer\heroslayer\src\operate\camera.cpp
 	"Camera.h"
 	"Engine.h"
 
-1713670988 c:\sdl\heroslayer\heroslayer\src\operate\collisionhandler.h
+1713689086 c:\sdl\heroslayer\heroslayer\src\operate\collisionhandler.h
 	<SDL.h>
 	"GameMap.h"
 	"TileLayer.h"
+
+1713689728 c:\sdl\heroslayer\heroslayer\src\physics\gameobject.h
+	"IObject.h"
+	"Transform.h"
+	"Point.h"
+	<bits/stdc++.h>
+	<SDL.h>
+	<SDL_image.h>
+
+1713689728 c:\sdl\heroslayer\heroslayer\src\physics\iobject.h
+
+1713035418 c:\sdl\heroslayer\heroslayer\src\map\tinyxml\tinyxml.h
+	<ctype.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<assert.h>
+	<string>
+	<iostream>
+	<sstream>
+	"tinystr.h"
+
+1713035418 c:\sdl\heroslayer\heroslayer\src\map\tinyxml\tinystr.h
+	<assert.h>
+	<string.h>
+
+1713035418 source:c:\sdl\heroslayer\heroslayer\src\map\tinyxml\tinystr.cpp
+	"tinystr.h"
+
+1713035418 source:c:\sdl\heroslayer\heroslayer\src\map\tinyxml\tinyxml.cpp
+	<ctype.h>
+	<sstream>
+	<iostream>
+	"tinyxml.h"
+
+1713035418 source:c:\sdl\heroslayer\heroslayer\src\map\tinyxml\tinyxmlerror.cpp
+	"tinyxml.h"
+
+1713035418 source:c:\sdl\heroslayer\heroslayer\src\map\tinyxml\tinyxmlparser.cpp
+	<ctype.h>
+	<stddef.h>
+	"tinyxml.h"
+	<windows.h>
+
+1713689086 source:c:\sdl\heroslayer\heroslayer\src\operate\collisionhandler.cpp
+	"CollisionHandler.h"
+	"Engine.h"
+	<SDL.h>
+
+1713722703 source:c:\sdl\heroslayer\heroslayer\src\operate\sequenceanimation.cpp
+	"Animation.h"
+	<bits/stdc++.h>
+	<SDL.h>
+
+1713718822 c:\sdl\heroslayer\heroslayer\src\operate\spriteanimation.h
+	"Animation.h"
+	<bits/stdc++.h>
+	<SDL.h>
+
+1713722654 source:c:\sdl\heroslayer\heroslayer\src\operate\spriteanimation.cpp
+	"SpriteAnimation.h"
+	"TextureManager.h"
+	<SDL.h>
+
+1713724626 c:\sdl\heroslayer\heroslayer\src\physics\character.h
+	"GameObject.h"
+
+1713689728 c:\sdl\heroslayer\heroslayer\src\physics\rigidbody.h
+	"Vector2D.h"
+
+1713689728 c:\sdl\heroslayer\heroslayer\src\physics\collider.h
+	"Engine.h"
+	"CollisionHandler.h"
+	"Camera.h"
+	"Vector2D.h"
+	<SDL.h>
+
+1713725023 c:\sdl\heroslayer\heroslayer\src\physics\enemy.h
+	"Character.h"
+	"RigidBody.h"
+	"Collider.h"
+	"SequenceAnimation.h"
+	"SpriteAnimation.h"
+	"Vector2D.h"
+
+1713724789 c:\sdl\heroslayer\heroslayer\src\operate\sequenceanimation.h
+	"Animation.h"
+	<bits/stdc++.h>
+	<SDL.h>
+
+1713721666 c:\sdl\heroslayer\heroslayer\src\operate\objectfactory.h
+	"GameObject.h"
+	<bits/stdc++.h>
+
+1713721674 source:c:\sdl\heroslayer\heroslayer\src\operate\objectfactory.cpp
+	"ObjectFactory.h"
+	<bits/stdc++.h>
+
+1713726293 source:c:\sdl\heroslayer\heroslayer\src\physics\enemy.cpp
+	"Enemy.h"
+	"Character.h"
+	"Camera.h"
+	"CollisionHandler.h"
+	"ObjectFactory.h"
+	<time.h>
+	<stdlib.h>
+	<SDL.h>
 

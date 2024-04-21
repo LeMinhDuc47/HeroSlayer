@@ -15,10 +15,9 @@
 					<Add option="-g" />
 					<Add directory="src/Core" />
 					<Add directory="src/Physics" />
-					<Add directory="src/Graphics" />
 					<Add directory="src/Operate" />
 					<Add directory="src/Map" />
-					<Add directory="src/Vendor/TinyXML" />
+					<Add directory="src/Map/TinyXML" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -55,7 +54,12 @@
 		<Unit filename="src/Map/MapParser.h" />
 		<Unit filename="src/Map/TileLayer.cpp" />
 		<Unit filename="src/Map/TileLayer.h" />
-		<Unit filename="src/Operate/Animation.cpp" />
+		<Unit filename="src/Map/TinyXML/tinystr.cpp" />
+		<Unit filename="src/Map/TinyXML/tinystr.h" />
+		<Unit filename="src/Map/TinyXML/tinyxml.cpp" />
+		<Unit filename="src/Map/TinyXML/tinyxml.h" />
+		<Unit filename="src/Map/TinyXML/tinyxmlerror.cpp" />
+		<Unit filename="src/Map/TinyXML/tinyxmlparser.cpp" />
 		<Unit filename="src/Operate/Animation.h" />
 		<Unit filename="src/Operate/Camera.cpp" />
 		<Unit filename="src/Operate/Camera.h" />
@@ -63,18 +67,26 @@
 		<Unit filename="src/Operate/CollisionHandler.h" />
 		<Unit filename="src/Operate/Input.cpp" />
 		<Unit filename="src/Operate/Input.h" />
+		<Unit filename="src/Operate/ObjectFactory.cpp" />
+		<Unit filename="src/Operate/ObjectFactory.h" />
+		<Unit filename="src/Operate/SequenceAnimation.cpp" />
+		<Unit filename="src/Operate/SequenceAnimation.h" />
+		<Unit filename="src/Operate/SpriteAnimation.cpp" />
+		<Unit filename="src/Operate/SpriteAnimation.h" />
 		<Unit filename="src/Operate/Timer.cpp" />
 		<Unit filename="src/Operate/Timer.h" />
 		<Unit filename="src/Operate/Warrior.cpp" />
 		<Unit filename="src/Operate/Warrior.h" />
+		<Unit filename="src/Physics/Character.h" />
+		<Unit filename="src/Physics/Collider.h" />
+		<Unit filename="src/Physics/Enemy.cpp" />
+		<Unit filename="src/Physics/Enemy.h" />
+		<Unit filename="src/Physics/GameObject.h" />
+		<Unit filename="src/Physics/IObject.h" />
 		<Unit filename="src/Physics/Point.h" />
+		<Unit filename="src/Physics/RigidBody.h" />
+		<Unit filename="src/Physics/Transform.h" />
 		<Unit filename="src/Physics/Vector2D.h" />
-		<Unit filename="src/Vendor/TinyXML/tinystr.cpp" />
-		<Unit filename="src/Vendor/TinyXML/tinystr.h" />
-		<Unit filename="src/Vendor/TinyXML/tinyxml.cpp" />
-		<Unit filename="src/Vendor/TinyXML/tinyxml.h" />
-		<Unit filename="src/Vendor/TinyXML/tinyxmlerror.cpp" />
-		<Unit filename="src/Vendor/TinyXML/tinyxmlparser.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

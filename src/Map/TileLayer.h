@@ -2,7 +2,7 @@
 #define TILELAYER_H
 #include<bits/stdc++.h>
 #include "Layer.h"
-
+using namespace std;
 struct Tileset
 {
     int FirstID, LastID;

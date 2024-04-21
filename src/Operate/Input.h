@@ -4,6 +4,8 @@
 #include <SDL.h>
 #include <SDL_image.h>
 
+enum Axis {HORIZONTAL, VERTICAL};
+
 class Input
 {
     public:
@@ -11,8 +13,13 @@ class Input
         {
             return s_Instance = (s_Instance != nullptr) ? s_Instance : new Input();
         }
+
         void Listen();
         bool GetKeyDown(SDL_Scancode key);
+
+        int GetAxisKey(Axis axis);
+
+        bool GetMouseButtonDown(Uint8 mouseButton);
 
     private:
         Input();
@@ -21,6 +28,9 @@ class Input
 
         const Uint8* m_KeyStates;
         static Input* s_Instance;
+
+        Uint8 m_MouseButton;
+        bool m_MouseButtonDown, m_MouseButtonUp;
 };
 
 #endif
