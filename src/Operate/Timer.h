@@ -1,25 +1,30 @@
 #ifndef TIMER_H
 #define TIMER_H
 
+#include "SDL.h"
+
 const int TARGET_FPS = 60;
 const float TARGET_DELTATIME = 1.5f;
 
-class Timer
-{
-    public:
-        void Tick();
-         float GetDeltaTime() { return m_DeltaTime; }
-         static Timer* GetInstance()
-        {
-            return s_Instance = ( s_Instance != nullptr ) ? s_Instance : new Timer();
-        }
+class Timer {
+public:
+	void Tick();
+	inline float GetDeltaTime() { return m_DeltaTime; }
 
-    private:
-        Timer() {};
-        static Timer* s_Instance;
-        float m_DeltaTime;
-        float m_LastTime;
-
+	inline static Timer* GetInstance() {
+		if (s_Instance != nullptr)
+			return s_Instance;
+		else
+			return s_Instance = new Timer();
+	}
+private:
+	Timer();
+	static Timer* s_Instance;
+	float m_DeltaTime;
+	Uint32 m_LastTime;
 };
 
 #endif
+
+
+

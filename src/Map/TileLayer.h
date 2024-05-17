@@ -3,35 +3,30 @@
 #include<bits/stdc++.h>
 #include "Layer.h"
 using namespace std;
-struct Tileset
-{
-    int FirstID, LastID;
-    int RowCount, ColCount;
-    int TileCount, TileSize;
-    string Name, Source;
-
-    void Log() {
-
-    }
+struct Tileset {
+	int FirstID, LastID;
+	int RowCount, ColCount;
+	int TileCount, TileSize;
+	string Name, Source;
 };
 
 using TilesetList = vector<Tileset>;
-using TileMap = vector<vector<int>>;
+using TileMap = vector <vector<int>> ;
 
 class TileLayer : public Layer
 {
-    public:
-        TileLayer(int tileSize, int rowCount, int colCount, TileMap tileMap, TilesetList tilesets);
-        virtual void Render();
-        virtual void Update();
-        TileMap GetTilemap() { return m_TileMap; }
+	public:
+		TileLayer(int tilesize, int rowcount, int colcount, TileMap tilemap, TilesetList tilesets);
+		virtual void Render();
+		virtual void Update();
+		inline TileMap GetTileMap() { return m_TileMap; }
 
-    private:
-        int m_TileSize;
-        int m_RowCount, m_ColCount;
+	private:
+		int m_TileSize;
+		int m_RowCount, m_ColCount;
 
-        TileMap m_TileMap;
-        TilesetList m_Tilesets;
+		TileMap m_TileMap;
+		TilesetList m_Tilesets;
+
 };
-
 #endif

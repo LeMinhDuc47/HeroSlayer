@@ -5,26 +5,36 @@
 #include "TileLayer.h"
 #include "tinyxml.h"
 using namespace std;
-class MapParser
-{
-    public:
-        bool Load();
-        void Clean();
-         GameMap* GetMap(string id) { return m_MapDict[id]; }
-         static MapParser* GetInstance()
-        {
-            return s_Instance = (s_Instance != nullptr) ? s_Instance : new MapParser();
-        }
+class MapParser {
+	public:
+		void Load();
+		void Clean();
 
-    private:
-        bool Parse(string id, string source);
-        Tileset ParseTileset(TiXmlElement* xmlTileset);
-        TileLayer* ParseTileLayer(TiXmlElement *xmlLayer, TilesetList tilesets, int tileSize, int rowCount, int colCount);
+		inline GameMap* GetMap(string id) { return m_MapDict[id]; };
+		inline static MapParser* GetInstance() {
+			if (s_Instance != nullptr)
+				return s_Instance;
+			else
+				return s_Instance = new MapParser();
+		}
 
-    private:
-        MapParser() {};
-        static MapParser* s_Instance;
-        map<string, GameMap*> m_MapDict;
+	private:
+		bool Parse(string id, string source);
+		Tileset ParseTileset(TiXmlElement* xmlTileset);
+		TileLayer* ParseTileLayer(TiXmlElement* xmlLayer, TilesetList tilesets, int tilesize, int rowcount, int colcount);
+
+	private:
+		MapParser() {
+			ListMap.push_back("map1.tmx");
+			ListMap.push_back("map2.tmx");
+			ListMap.push_back("map3.tmx");
+			Completemap1 = false;
+		};
+		static MapParser* s_Instance;
+		map<string, GameMap*> m_MapDict;
+		vector<string> ListMap;
+		bool Completemap1;
+		string loadmap;
 };
 
 #endif

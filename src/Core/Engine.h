@@ -1,44 +1,89 @@
 #ifndef ENGINE_H
 #define ENGINE_H
 #include "GameMap.h"
-#include "GameObject.h"
+#include "SoundManager.h"
+#include "FontManager.h"
 #include <bits/stdc++.h>
 #include <SDL.h>
 #include <SDL_image.h>
+#include <SDL_mixer.h>
+#include <SDL_ttf.h>
+class Warrior;
+class Enemy;
+class Boss;
+class PlayPK;
+class Menustage;
+const int SCREEN_WIDTH = 960;
+const int SCREEN_HEIGHT = 640;
 
-#define SCREEN_WIDTH 1280
-#define SCREEN_HEIGHT 720
-using namespace std;
-class Engine
-{
-    public:
-        static Engine* GetInstance()
-        {
-            return s_Instance = (s_Instance != nullptr) ? s_Instance : new Engine();
-        }
+class Engine {
+public:
+    Engine() {
+        isMap1 = true; isMap2 = false;
+        checkloadmap = false; checkloadmap = false;
+        checkcontinue = false;
+        score = 0; updatescore = false;
+        gold = 0; goldplay = 0;
+    };
+    static Engine* GetInstance() {
+        if (s_Instance != nullptr)
+            return s_Instance;
+        else
+            return s_Instance = new Engine();
+    }
 
-        bool Init();
-        bool Clean();
-        void Quit();
+    bool Init();
+    bool Clean();
+    void Quit();
 
-        void Update();
-        void Render();
-        void Events();
 
-         GameMap* GetMap() {return m_LevelMap;}
-         bool IsRunning() { return m_IsRunning; }
-         SDL_Renderer* GetRenderer() {return m_Renderer;}
+    void Update();
+    void Render();
+    void Events();
+    void GetPrevious();
+    void Luu();
 
-    private:
-        Engine() {}
-        bool m_IsRunning;
+    inline GameMap* GetMap() { return m_LevelMap; }
+    inline bool IsRunning() { return m_IsRunning; }
+    inline SDL_Renderer* GetRenderer() { return m_Renderer; }
 
-        GameMap* m_LevelMap;
-        SDL_Window* m_Window;
-        SDL_Renderer* m_Renderer;
-        static Engine* s_Instance;
+    Warrior* GetWarrior() { return player; }
+    Enemy* GetEnemy() { return enemy; }
+    Boss* GetBoss() { return boss; }
+    PlayPK* GetPlayPK() { return playPK; }
+    Menustage* GetMenu() { return menu; }
+    FontManager* GetFont() { return m_FontManager; }
 
-        vector<GameObject*> m_GameObjects;
+    bool GetMap1() { return isMap1; }
+    bool GetMap2() { return isMap2; }
+    bool GetoverWin() { return gameoverwin; }
+    bool GetoverLose() { return gameoverlose; }
+
+    int GetGold() { return gold; }
+
+private:
+    bool m_IsRunning = true;
+
+    GameMap* m_LevelMap;
+    SDL_Window* m_Window;
+    SDL_Renderer* m_Renderer;
+    static Engine* s_Instance;
+
+    Warrior* player;
+    Enemy* enemy;
+    Boss* boss;
+    PlayPK* playPK;
+    Menustage* menu;
+
+    FontManager* m_FontManager;
+private:
+    bool isMap1; bool isMap2;
+    bool checkloadmap; bool checkloadmap2; int CurrentEnemy; int CurrentBoss;
+    bool checkcontinue;
+    bool gameoverwin, gameoverlose;
+    int score; bool updatescore;
+    int gold; int goldplay;
+    int highscore[5];
 };
 
 #endif

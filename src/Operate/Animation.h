@@ -4,22 +4,26 @@
 #include <bits/stdc++.h>
 #include <SDL.h>
 #include <SDL_image.h>
-
+#include"Engine.h"
+using namespace std;
 class Animation
 {
-    public:
-        Animation(bool repeat = true): m_Repeat(repeat)
-        {
-            m_IsEnded = false;
-        }
+	public:
+		Animation() {};
 
-        virtual void Update(float dt) = 0;
-        bool IsEnded() { return m_IsEnded; }
+		void Update();
+		void Draw(float x, float y, int spriteWidth, int spriteHeight, SDL_RendererFlip flip = SDL_FLIP_NONE);
+		void SetProps(string textureID, int spriteRow, int frameCount, int speed);
+		void Reset();
+		int GetCurrentFrame() { return m_CurrentFrame; }
+		void DrawKame(float x, float y, int spriteWidth, int spriteHeight, int currentframe, SDL_RendererFlip flip = SDL_FLIP_NONE);
 
-    protected:
-        bool m_Repeat;
-        bool m_IsEnded;
-        int m_CurrentFrame;
+	private:
+		int m_Speed;
+		int m_SpriteRow;
+		int m_FrameCount;
+		int m_CurrentFrame;
+		string m_TextureID;
 
 };
 

@@ -1,34 +1,39 @@
 #ifndef CAMERA_H
 #define CAMERA_H
-#include <SDL.h>
-#include "Engine.h"
+
+#include "SDL.h"
 #include "Point.h"
 #include "Vector2D.h"
+#include "Engine.h"
+
 
 class Camera
 {
-    public:
-        void Update(float dt);
-        SDL_Rect GetViewBox() { return m_ViewBox; }
-        Vector2D GetPosition() { return m_Position; }
-        void SetTarget(Point* target) { m_Target = target; }
+	public:
+		inline static Camera* GetInstance() {
+			if (s_Instance != nullptr)
+				return s_Instance;
+			else
+				return s_Instance = new Camera();
+		}
 
-        static Camera* GetInstance()
-        {
-            return s_Instance = (s_Instance != nullptr) ? s_Instance : new Camera();
-        }
+		inline SDL_Rect GetViewBox() { return m_ViewBox; }
+		inline Vector2D GetPosition() { return m_Position; }
+		inline void SetTarget(Point* target) { m_Target = target; }
 
-    private:
-        Camera()
-        {
-            m_ViewBox = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
-        }
+		void Update(float dt);
 
-        Point* m_Target;
-        Vector2D m_Position;
+	private:
+		Camera() { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT; };
 
-        SDL_Rect m_ViewBox;
-        static Camera* s_Instance;
+		Point* m_Target;
+		Vector2D m_Position;
+
+		SDL_Rect m_ViewBox;
+		static Camera* s_Instance;
+
+
 };
+
 
 #endif

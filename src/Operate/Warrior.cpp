@@ -1,201 +1,411 @@
 #include "Warrior.h"
 #include "TextureManager.h"
-#include "SpriteAnimation.h"
 #include "RigidBody.h"
 #include "Input.h"
 #include "CollisionHandler.h"
 #include "Collider.h"
 #include "Camera.h"
-#include "ObjectFactory.h"
-
+#include "Engine.h"
+#include "Enemy.h"
+#include "Boss.h"
+#include "FontManager.h"
 #include <SDL.h>
 #include <SDL_image.h>
-#include <iostream>
-#include <windows.h>
+#include <bits/stdc++.h>
+using namespace std;
+Warrior::Warrior(Properties* props) : GameObject(props) {
+	m_TextureID = props->TextureID;
+	m_Width = props->Width;
+	m_Height = props->Height;
+	m_Flip = props->Flip;
 
-static Register<Warrior> player("PLAYER");
+	m_Transform = new Transform(props->X, props->Y);
 
-Warrior::Warrior(Properties* props): Character(props)
-{
-    m_IsRunning = false;
-    m_IsJumping = false;
-    m_IsFalling = false;
-    m_IsGrounded = false;
-    m_IsAttacking1 = false;
-    m_IsAttacking2 = false;
-    m_IsCrouching = false;
+	m_IsRunning = false;
+	m_IsJumping = false;
+	m_IsFalling = false;
+	m_IsGrounded = false;
+	m_IsAttacking = false;
+	m_IsKame = false;
+	m_IsDie = false;
+	ssj = false;
+	checkload = 0;
 
-    m_Flip = SDL_FLIP_NONE;
-    m_JumpTime = JUMP_TIME;
-    m_JumpForce = JUMP_FORCE;
-    m_AttackTime = ATTACK_TIME;
+	m_Flip = SDL_FLIP_NONE;
+	m_HP = 100000; max_HP = 100000;
+	m_dame = 100;
+	time_ssj = 0;
+	time_kame = 0;
+	kame_frame = 0;
+	dau_than = 10;
+	time_dau_than = 0;
+	time_dau_than_max = 600;
 
-    m_Collider = new Collider();
-    m_Collider->SetBuffer(-65, -53, 0, 0);
+	m_Collider = new Collider();
+	m_Collider->SetBuffer(-10, 0, 15, 0);
 
-    m_RigidBody = new RigidBody();
-    m_RigidBody->SetGravity(3.0f);
+	m_RigidBody = new RigidBody();
+	m_RigidBody->SetGravity(3.0f);
 
-    m_Animation = new SpriteAnimation();
-    m_Animation->SetProps(m_TextureID, 0, 8, 80);
+	m_Animation = new Animation();
+	m_Animation->SetProps("player", 0, 3, 100);
+
+	kame_Animation = new Animation();
+
+	ssj_Animation = new Animation();
+
+}
+void Warrior::Draw() {
+	if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_L))
+		ssj_Animation->Draw(m_Transform->X - 45, m_Transform->Y - 53, 150, 128, m_Flip);
+	else if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_K) && time_kame >= 0) {
+		if (time_kame >= 0 && time_kame <= 240) kame_frame = 0;
+		else if (time_kame > 240 && time_kame <= 480) kame_frame = 1;
+		else if (time_kame > 480 && time_kame <= 720) kame_frame = 2;
+		else {
+			kame_frame = -1;
+			TextureManager::GetInstance()->Drop("player_kame");
+			m_Animation->Draw(m_Transform->X, m_Transform->Y, m_Width, m_Height, m_Flip);
+		}
+			if (m_Flip == SDL_FLIP_NONE && kame_frame >= 0)
+				kame_Animation->DrawKame(m_Transform->X, m_Transform->Y, 600, m_Height, kame_frame, m_Flip);
+			else kame_Animation->DrawKame(m_Transform->X - 540, m_Transform->Y, 600, m_Height, kame_frame, m_Flip);
+
+	}
+	else m_Animation->Draw(m_Transform->X, m_Transform->Y, m_Width, m_Height, m_Flip);
+
+	float vitri_khung = m_Origin->X-480;
+	if (vitri_khung < 0) vitri_khung = 0;
+	if (m_Origin->X > 1440) vitri_khung = 960;
+	TextureManager::GetInstance()->Draw("HPMN", static_cast<int>(vitri_khung), 0, 205, 150);
+	int vitri_hp = 1.0 * m_HP / max_HP * 150; if (vitri_hp > 150) vitri_hp = 150;
+	TextureManager::GetInstance()->Draw("HP", static_cast<int>(vitri_khung) + 43, 12, vitri_hp, 25);
+	TextureManager::GetInstance()->Draw("MN", static_cast<int>(vitri_khung) + 43, 47, 137, 12);
+
+	float vitri_dau_X = vitri_khung;
+	float vitri_dau_Y = 180;
+	int loaddau = 60;
+	if (time_dau_than < 0) loaddau = 1.0 * (600 - abs(time_dau_than)) / time_dau_than_max * 60;
+	TextureManager::GetInstance()->Draw("dau_than", static_cast<int>(vitri_dau_X) , static_cast<int> (vitri_dau_Y), 60, loaddau, SDL_FLIP_NONE);
+	Vector2D cam = Camera::GetInstance()->GetPosition();
+
+
+	FontManager* font = Engine::GetInstance()->GetFont();
+	SDL_Color textColor = { 255, 255, 255, 255 };
+	if (font->isFontLoaded()) {
+		SDL_Texture* textTexture = font->renderText(std::to_string(dau_than), textColor, font->getFont(), Engine::GetInstance()->GetRenderer());
+		if (textTexture) {
+			SDL_Rect customRect = { vitri_dau_X + 10 -cam.X, vitri_dau_Y-cam.Y + 20, 30, 30 };
+			SDL_RenderCopy(Engine::GetInstance()->GetRenderer(), textTexture, NULL, &customRect);
+			SDL_DestroyTexture(textTexture);
+		}
+	}
+
+	/*Vector2D cam = Camera::GetInstance()->GetPosition();
+	SDL_Rect box = m_Collider->Get();
+	//m_Collider->Set(m_Transform->X, m_Transform->Y, 60, 75);
+	box.x -= cam.X;
+	box.y -= cam.Y;
+	SDL_RenderDrawRect(Engine::GetInstance()->GetRenderer(), &box);*/
 }
 
-void Warrior::Draw()
-{
-    m_Animation->Draw(m_Transform->X, m_Transform->Y, m_Width, m_Height, 1, 1, m_Flip);
-    m_Collider->Draw();
+void Warrior::Update(float dt) {
+	//std::cout << m_Origin->X << " " << m_Origin->Y << std::endl;
+
+	if (m_HP > max_HP) m_HP = max_HP;
+	m_IsRunning = false;
+	m_RigidBody->UnSetForce();
+
+	if (m_HP <= 0) m_IsDie = true;
+	else m_IsDie = false;
+
+	if (m_IsDie) {
+		m_IsRunning = false;
+		m_IsJumping = false;
+		m_IsFalling = false;
+		m_IsAttacking = false;
+	}
+	else {
+		//Run forward
+		if (Input::GetInstance()->GetAxisKey(HORIZONTAL) == FORWARD && !m_IsAttacking) {
+			m_RigidBody->ApplyForceX(FORWARD * RUN_FORCE);
+			m_Flip = SDL_FLIP_NONE;
+			m_IsRunning = true;
+		}
+
+		//Run backward
+		if (Input::GetInstance()->GetAxisKey(HORIZONTAL) == BACKWARD && !m_IsAttacking) {
+			m_RigidBody->ApplyForceX(BACKWARD * RUN_FORCE);
+			m_Flip = SDL_FLIP_HORIZONTAL;
+			m_IsRunning = true;
+		}
+
+		//Attack
+		if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_J)) {
+			m_RigidBody->UnSetForce();
+			m_IsAttacking = true;
+		}
+		else m_IsAttacking = false;
+
+		//KAMEHAMEHA
+		if (time_kame < 0) {
+			time_kame += dt;
+			m_IsKame = false;
+		}
+		if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_K) && !m_IsDie && time_kame >= 0) {
+			kame_Animation->SetProps("player_kame", 0, 3, 5500);
+			time_kame += dt;
+			m_IsKame = true;
+
+			if (time_kame > 720) {
+				time_kame = -999;
+			}
+		}
+		else m_IsKame = false;
+		//std::cout << time_kame << std::endl;
+		//SSJ
+		if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_L) && !ssj) {
+			ssj_Animation->SetProps("player_ssj", 0, 7, 200);
+			ssj_Animation->Update();
+			time_ssj += dt;
+		}
+
+		if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_L) && !m_IsDie && time_ssj >= 200 && !ssj) {
+			m_dame = 200;
+			m_HP = 200000;
+			max_HP = 200000;
+			TextureManager::GetInstance()->Load("player", "LamGame/Picture/Character/gokussj.png");
+			TextureManager::GetInstance()->Load("player_kame", "LamGame/Picture/Character/ssj_kame.png");
+			checkload = 1;
+			ssj = true;
+		}
+		if (ssj) {
+			time_ssj += dt;
+			if (time_ssj > 9000) {
+				ssj = false;
+				time_ssj = -9000;
+			}
+		}
+		if (time_ssj < 0) {
+			time_ssj += dt;
+		}
+		if (checkload == 1 && !ssj) {
+			TextureManager::GetInstance()->Load("player", "LamGame/Picture/Character/base.png");
+			TextureManager::GetInstance()->Load("player_kame", "LamGame/Picture/Character/base_kame.png");
+			checkload = 0;
+		}
+
+
+		//dauthan
+		if (time_dau_than < 0) {
+			time_dau_than += dt;
+		}
+		if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_SPACE) && time_dau_than >= 0) {
+			time_dau_than = -600;
+			dau_than -= 1;
+			m_HP = max_HP;
+		}
+
+		//danh nhau map 1
+		Enemy* enemy = Engine::GetInstance()->GetEnemy();
+		if (Engine::GetInstance()->GetMap1()) {
+			if (enemy->CheckAttack()) {
+				m_Time += dt;
+				if (m_Time > 5) {
+					m_Time = 0;
+					m_HP -= enemy->GetDame();
+					if (enemy->GetFlip() == SDL_FLIP_NONE) m_RigidBody->ApplyForceX(2 * FORWARD);
+					else if (enemy->GetFlip() == SDL_FLIP_HORIZONTAL) m_RigidBody->ApplyForceX(2 * BACKWARD);
+					m_RigidBody->Update(dt);
+				}
+			}
+
+			if (Engine::GetInstance()->GetEnemy()->GetSkill()) {
+				m_HP -= 5 * enemy->GetDame();
+				if (enemy->GetFlip() == SDL_FLIP_NONE) m_RigidBody->ApplyForceX(5 * FORWARD);
+				else if (enemy->GetFlip() == SDL_FLIP_HORIZONTAL) m_RigidBody->ApplyForceX(5 * BACKWARD);
+				m_RigidBody->Update(dt);
+			}
+		}
+
+		//danh nhau map2
+		Boss* boss = Engine::GetInstance()->GetBoss();
+		if (Engine::GetInstance()->GetMap2()) {
+			if (boss->CheckAttack()) {
+				m_Time += dt;
+				if (m_Time > 5) {
+					m_Time = 0;
+					m_HP -= boss->GetDame();
+					if (boss->GetFlip() == SDL_FLIP_NONE) m_RigidBody->ApplyForceX(2 * FORWARD);
+					else if (boss->GetFlip() == SDL_FLIP_HORIZONTAL) m_RigidBody->ApplyForceX(2 * BACKWARD);
+					m_RigidBody->Update(dt);
+				}
+			}
+
+			if (boss->GetSkill() && boss->Gettime() >= 175 && boss->Gettime() <= 200) {
+				m_HP -= 10 * boss->GetDame();
+			}
+		}
+
+		//Jump
+		if ((Input::GetInstance()->GetKeyDown(SDL_SCANCODE_W)
+			|| Input::GetInstance()->GetKeyDown(SDL_SCANCODE_UP))
+			&& m_IsGrounded) {
+			m_IsJumping = true;
+			m_IsGrounded = false;
+			m_RigidBody->ApplyForceY(UPWARD * JUMP_FORCE);
+		}
+		if ((Input::GetInstance()->GetKeyDown(SDL_SCANCODE_W)
+			|| Input::GetInstance()->GetKeyDown(SDL_SCANCODE_UP))) {
+			m_IsJumping = true;
+			m_RigidBody->ApplyForceY(UPWARD * JUMP_FORCE);
+		}
+		else {
+			m_IsJumping = false;
+		}
+
+		if ((Input::GetInstance()->GetKeyDown(SDL_SCANCODE_W) || Input::GetInstance()->GetKeyDown(SDL_SCANCODE_UP)) && m_IsJumping ) {
+			if (CollisionHandler::GetInstance()->MapCollision(m_Collider->Get()) && !m_IsGrounded) {
+				m_IsJumping = false;
+				m_IsFalling = true;
+				m_Transform->Y += 3;
+			}
+		}
+
+
+
+		//Fall
+		if (m_RigidBody->Velocity().Y > 0 && !m_IsGrounded && !m_IsJumping) {
+
+			m_IsFalling = true;
+		}
+
+		else m_IsFalling = false;
+
+		if (Input::GetInstance()->GetKeyDown(SDL_SCANCODE_S) && !CollisionHandler::GetInstance()->MapCollision(m_Collider->Get())) {
+			m_IsFalling = true;
+		}
+
+		//move on x
+		m_RigidBody->Update(dt);
+		m_LastSafePosition.X = m_Transform->X;
+		m_Transform->X += m_RigidBody->Position().X;
+		m_Collider->Set(static_cast<int>(m_Transform->X), static_cast<int>(m_Transform->Y), 60, 75);
+
+		if (CollisionHandler::GetInstance()->MapCollision(m_Collider->Get()))
+		{
+			m_Transform->X = m_LastSafePosition.X;
+		}
+
+		// move y
+		m_RigidBody->Update(dt);
+		m_LastSafePosition.Y = m_Transform->Y;
+		m_Transform->Y += m_RigidBody->Position().Y;
+		m_Collider->Set(static_cast<int>(m_Transform->X), static_cast<int>(m_Transform->Y), 60, 75);
+
+		if (CollisionHandler::GetInstance()->MapCollision(m_Collider->Get()) && !m_IsJumping)
+		{
+			m_Transform->Y = m_LastSafePosition.Y;
+			m_IsGrounded = true;
+		}
+		else {
+			m_IsGrounded = false;
+		}
+
+		//Check vuot ra khoi map
+		if (m_Transform->X < 5 || m_Transform->X + m_Width > 1915) {
+			m_Transform->X = m_LastSafePosition.X;
+		}
+		if (m_Transform->Y < 5 || m_Transform->Y + m_Height > 635) {
+			m_Transform->Y = m_LastSafePosition.Y;
+		}
+
+		m_Origin->X = m_Transform->X + m_Width / 2;
+		m_Origin->Y = m_Transform->Y + m_Height / 2;
+	}
+
+	AnimationState();
+	m_Animation->Update();
+
 }
 
-void Warrior::Update(float dt)
-{
+void Warrior::AnimationState() {
+	//dungim
+	m_Animation->SetProps("player", 0, 3, 100);
 
-    m_IsRunning = false;
-    m_IsCrouching = false;
-    m_RigidBody->UnSetForce();
+	//run
+	if (m_IsRunning) {
+		m_Animation->SetProps("player", 3, 5, 100);
+	}
 
-    bool isAttacking = m_IsAttacking1 || m_IsAttacking2;
+	//Jump
+	if (m_IsJumping) {
+		m_Animation->SetProps("player", 1, 1, 100);
+	}
 
-    if ( Input::GetInstance()->GetAxisKey(HORIZONTAL) == FORWARD && !isAttacking)
-    {
-        m_RigidBody->ApplyForceX(FORWARD * RUN_FORCE);
-        m_Flip = SDL_FLIP_NONE;
-        m_IsRunning = true;
-    }
+	//fall
+	if (m_IsFalling) {
+		m_Animation->SetProps("player", 2, 1, 100);
+	}
 
-    if ( Input::GetInstance()->GetAxisKey(HORIZONTAL) == BACKWARD && !isAttacking)
-    {
-        m_RigidBody->ApplyForceX(BACKWARD * RUN_FORCE);
-        m_Flip = SDL_FLIP_HORIZONTAL;
-        m_IsRunning = true;
-    }
-
-    if ( Input::GetInstance()->GetKeyDown(SDL_SCANCODE_S) )
-    {
-        m_RigidBody->UnSetForce();
-        m_IsCrouching = true;
-    }
-    if ( Input::GetInstance()->GetMouseButtonDown(SDL_BUTTON_LEFT) )
-    {
-        m_RigidBody->UnSetForce();
-        m_IsAttacking1 = true;
-        m_IsAttacking2 = !m_IsAttacking1;
-    }
-
-    if ( Input::GetInstance()->GetMouseButtonDown(SDL_BUTTON_RIGHT) )
-    {
-        m_RigidBody->UnSetForce();
-        m_IsAttacking2 = true;
-        m_IsAttacking1 = !m_IsAttacking2;
-    }
-
-    if( Input::GetInstance()->GetKeyDown(SDL_SCANCODE_SPACE) && m_IsGrounded )
-    {
-        m_IsJumping = true;
-        m_IsGrounded = false;
-        m_RigidBody->ApplyForceY(UPWARD * m_JumpForce);
-    }
-    if ( Input::GetInstance()->GetKeyDown(SDL_SCANCODE_SPACE) && m_IsJumping && m_JumpTime > 0)
-    {
-        m_JumpTime -= dt;
-        m_RigidBody->ApplyForceY(UPWARD * m_JumpForce);
-    }
-    else
-    {
-        m_IsJumping = false;
-        m_JumpTime = JUMP_TIME;
-    }
-
-    if( m_RigidBody->Velocity().Y > 0 && !m_IsGrounded )
-    {
-        m_IsFalling = true;
-    }
-    else
-    {
-        m_IsFalling = false;
-    }
-
-    if( (m_IsAttacking1 || m_IsAttacking2) && m_AttackTime > 0 )
-    {
-        m_AttackTime -= dt;
-    }
-    else
-    {
-        m_IsAttacking1 = false;
-        m_IsAttacking2 = false;
-        m_AttackTime = ATTACK_TIME;
-    }
-
-    int boxWidth = 30;
-    int boxHeight = 51;
-
-    m_RigidBody->Update(dt);
-    m_LastSafePosition.X = m_Transform->X;
-    m_Transform->X += m_RigidBody->Position().X;
-    m_Collider->Set(m_Transform->X, m_Transform->Y, boxWidth, boxHeight);
-
-    if( CollisionHandler::GetInstance()->MapCollision(m_Collider->Get()) )
-    {
-        m_Transform->X = m_LastSafePosition.X;
-    }
-
-    m_RigidBody->Update(dt);
-    m_LastSafePosition.Y = m_Transform->Y;
-    m_Transform->Y += m_RigidBody->Position().Y;
-    m_Collider->Set(m_Transform->X, m_Transform->Y, boxWidth, boxHeight);
-
-    if( CollisionHandler::GetInstance()->MapCollision( m_Collider->Get() ) )
-    {
-        m_IsGrounded = true;
-        m_Transform->Y = m_LastSafePosition.Y;
-    }
-    else {
-        m_IsGrounded = false;
-    }
-
-    m_Origin->X = m_Transform->X + m_Width / 2;
-    m_Origin->Y = m_Transform->Y + m_Height / 2;
-
-    AnimationState();
-
-    m_Animation->Update(dt);
+	//attack
+	if (m_IsAttacking) {
+		m_Animation->SetProps("player", 4, 10, 50);
+	}
+	if (m_IsDie) {
+		m_Animation->SetProps("player", 5, 1, 100);
+	}
+}
+void Warrior::Clean() {
+	TextureManager::GetInstance()->Drop("player");
+	TextureManager::GetInstance()->Drop("player_ssj");
+	TextureManager::GetInstance()->Drop("HP");
+	TextureManager::GetInstance()->Drop("HPMN");
+	TextureManager::GetInstance()->Drop("MN");
+	TextureManager::GetInstance()->Drop("player_kame");
 }
 
-void Warrior::AnimationState()
-{
-    m_Animation->SetProps("player_idle", 0, 8, 100);
+void Warrior::Load() {
+	TextureManager::GetInstance()->Load("player", "assets/Character/base.png");
+	TextureManager::GetInstance()->Load("player_kame", "assets/Character/base_kame.png");
+	TextureManager::GetInstance()->Load("HPMN", "assets/hp + mana/mau + mana.png");
+	TextureManager::GetInstance()->Load("HP", "assets/hp + mana/mau.png");
+	TextureManager::GetInstance()->Load("MN", "assets/hp + mana/mana.png");
+	TextureManager::GetInstance()->Load("player_ssj", "assets/Character/bienssj.png");
 
-    if(m_IsRunning)
-    {
-        m_Animation->SetProps("player_run", 0, 8, 100);
-    }
+	TextureManager::GetInstance()->Load("dau_than", "assets/Character/dau_than.png");
 
-    if(m_IsCrouching)
-    {
-        m_Animation->SetProps("player_crouch", 0, 6, 200);
-    }
-
-    if(m_IsJumping)
-    {
-        m_Animation->SetProps("player_jump", 0, 2, 200);
-    }
-
-    if(m_IsFalling)
-    {
-        m_Animation->SetProps("player_fall", 0, 2, 200);
-    }
-
-    if(m_IsAttacking1)
-    {
-        m_Animation->SetProps("player_attack1", 0, 4, 200);
-    }
-
-    if(m_IsAttacking2)
-    {
-        m_Animation->SetProps("player_attack2", 0, 4, 200);
-    }
 }
 
-void Warrior::Clean()
-{
-    TextureManager::GetInstance()->Drop(m_TextureID);
+void Warrior::Luu() {
+	ofstream out("assets/Pause/player.txt");
+	if (out.is_open()) {
+		out << m_Transform->X <<endl << m_Transform->Y <<endl;
+		out << m_HP <<endl << m_MN <<endl << m_dame <<endl;
+		out << ssj <<endl << time_kame <<endl;
+		out << dau_than <<endl;
+	}
+	out.close();
+
+}
+
+void Warrior::SetContinue() {
+	ifstream in("assets/Pause/player.txt");
+	string line;
+	int dem = 0;
+	while (std::getline(in, line)) {
+		dem++;
+		stringstream iss(line);
+		switch (dem) {
+		case 1: iss >> m_Transform->X; break;
+		case 2: iss >> m_Transform->Y; break;
+		case 3: iss >> m_HP; break;
+		case 4: iss >> m_MN; break;
+		case 5: iss >> m_dame; break;
+		case 6: iss >> ssj; break;
+		case 7: iss >> time_kame; break;
+		case 8: iss >> dau_than; break;
+		default: break;
+		}
+	}
 }

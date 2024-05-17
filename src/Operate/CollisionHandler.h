@@ -1,26 +1,32 @@
 #ifndef COLLISIONHANDLER_H
 #define COLLISIONHANDLER_H
 
-#include <SDL.h>
-#include "GameMap.h"
+#include "SDL.h"
+#include <bits/stdc++.h>
 #include "TileLayer.h"
+#include "GameMap.h"
+#include "Point.h"
 
 class CollisionHandler
 {
-    public:
-        bool MapCollision(SDL_Rect a);
-        bool CheckCollision(SDL_Rect a, SDL_Rect b);
+	public:
+		bool CheckCollision(SDL_Rect a, SDL_Rect b);
+		bool MapCollision(SDL_Rect a, int tileSize = 32, int RowCount = 20, int ColCount = 60);
 
-        static CollisionHandler* GetInstance()
-        {
-            return s_Instance = (s_Instance != nullptr) ? s_Instance : new CollisionHandler();
-        }
-
-    private:
-        CollisionHandler();
-        TileMap m_CollisionTilemap;
-        TileLayer* m_CollisionLayer;
-        static CollisionHandler* s_Instance;
+		inline static CollisionHandler* GetInstance() {
+			if (s_Instance != nullptr)
+				return s_Instance;
+			else
+				return s_Instance = new CollisionHandler();
+		}
+		void Update();
+	private:
+		CollisionHandler();
+		TileMap m_CollisionTilemap;
+		TileLayer* m_CollisionLayer;
+		static CollisionHandler* s_Instance;
 };
 
 #endif
+
+

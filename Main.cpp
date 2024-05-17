@@ -4,9 +4,10 @@
 int main(int argc, char* argv[])
 {
     Engine::GetInstance()->Init();
-
+    Engine::GetInstance()->GetPrevious();
     while (Engine::GetInstance()->IsRunning())
     {
+        Engine::GetInstance()->Luu();
         Engine::GetInstance()->Events();
         Engine::GetInstance()->Update();
         Engine::GetInstance()->Render();
