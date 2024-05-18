@@ -6,7 +6,7 @@
  
 3. Game em làm là game về thể loại phiêu lưu và đối kháng
 
-4. Ngưỡng điểm em mong muốn là 8.5
+4. Ngưỡng điểm em mong muốn là 9
 
 5. Game được tham khảo từ tài liệu môn học với từ sách SDL Game Development(https://thuvienso.dau.edu.vn:88/bitstream/DHKTDN/7035/1/6353.SDL%20game%20development.pdf) và học cách sử dụng các hàm SDL từ Lazy Foo nhưng có thêm nhiều chức năng tự tạo ra như:
 
