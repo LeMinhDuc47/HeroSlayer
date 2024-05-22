@@ -28,4 +28,4 @@ Sử dụng những cấu trúc cơ bản:
 
 ● Xuất/Nhập file lưu trữ dữ liệu
 
-● Các kĩ năng cơ bẳn của lập trình hướng đối tượng
+● Các kĩ năng cơ bản của lập trình hướng đối tượng
